@@ -1,0 +1,32 @@
+{
+  "name": "assemble-helper-assets-manifest",
+  "version": "0.1.0",
+  "description": "Get a file path from a json manifest file",
+  "main": "src/helper-assets-manifest.js",
+  "author": {
+    "email": "eric@webdeveric.com",
+    "name": "Eric King",
+    "url": "http://webdeveric.com/"
+  },
+  "private": true,
+  "license": "none",
+  "keywords": [
+    "Assemble",
+    "helper",
+    "assets",
+    "manifest"
+  ],
+  "files": [
+    "src/"
+  ],
+  "scripts": {
+    "eslint": "eslint --fix src",
+    "doc": "jsdoc -c ./jsdoc.json",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0",
+    "jsdoc": "^3.4.0",
+    "mocha": "^2.4.5"
+  }
+}
