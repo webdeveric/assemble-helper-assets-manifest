@@ -1,7 +1,7 @@
 # Assemble Helper Assets Manifest
 
-This package provides a [Handlebars](http://handlebarsjs.com/) helper that
-[Assemble](http://assemble.io/) can use when building static sites.
+This package provides a [custom helper](http://assemble.io/docs/Custom-Helpers.html) for
+[Handlebars](http://handlebarsjs.com/) that [Assemble](http://assemble.io/) can use.
 
 ## Installation
 
