@@ -1,29 +1,44 @@
 {
   "name": "assemble-helper-assets-manifest",
   "version": "0.1.0",
-  "description": "Get a file path from a json manifest file",
-  "main": "src/helper-assets-manifest.js",
+  "description": "This package provides a custom helper for Handlebars that Assemble can use.",
+  "keywords": [
+    "Assemble",
+    "Handlebars",
+    "helper",
+    "assets",
+    "manifest",
+    "assetsManifest"
+  ],
+  "private": true,
+  "license": "none",
   "author": {
     "email": "eric@webdeveric.com",
     "name": "Eric King",
     "url": "http://webdeveric.com/"
   },
-  "private": true,
-  "license": "none",
-  "keywords": [
-    "Assemble",
-    "helper",
-    "assets",
-    "manifest"
-  ],
+  "contributors": [],
+  "homepage": "https://github.com/webdeveric/assemble-helper-assets-manifest",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdeveric/assemble-helper-assets-manifest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webdeveric/assemble-helper-assets-manifest/issues"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "files": [
     "src/"
   ],
+  "main": "src/helper-assets-manifest.js",
   "scripts": {
     "eslint": "eslint --fix src",
     "doc": "jsdoc -c ./jsdoc.json",
     "test": "mocha"
   },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^2.7.0",
     "jsdoc": "^3.4.0",
