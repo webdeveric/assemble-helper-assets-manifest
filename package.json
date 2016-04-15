@@ -1,6 +1,6 @@
 {
   "name": "assemble-helper-assets-manifest",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "This package provides a custom helper for Handlebars that Assemble can use.",
   "keywords": [
     "Assemble",
@@ -41,6 +41,7 @@
   "dependencies": {},
   "devDependencies": {
     "eslint": "^2.7.0",
+    "handlebars": "^4.0.5",
     "jsdoc": "^3.4.0",
     "mocha": "^2.4.5"
   }
