@@ -20,17 +20,19 @@ module.exports.register = function( Handlebars, options )
 {
   'use strict';
 
-  if ( ! options.assetsManifest ) {
-    throw new Error('assetsManifest is not defined in assemble:options');
+  options = options || {};
+
+  if ( ! options.manifestPath ) {
+    throw new Error('manifestPath is not defined in options');
   }
 
   var AssetsManifest = require('./AssetsManifest');
-  var manifest = new AssetsManifest( options.assetsManifest );
+  var manifest = new AssetsManifest( options );
 
-  Handlebars.registerHelper('assetsManifest', function() {
-    var key     = arguments.length ? arguments[ 0 ] : '';
+  Handlebars.registerHelper( options.name || 'assetsManifest', function() {
+    var key     = arguments.length > 1 ? arguments[ 0 ] : '';
     var options = arguments.length > 1 ? arguments[ 1 ] : arguments[ 0 ];
-    var value   = manifest.get( key, options.hash.default || key, !!options.hash.fullPath );
-    return value;
+
+    return manifest.get( key, options.hash.default || key, options.hash.prefix );
   });
 };

@@ -1,9 +1,9 @@
 var path = require('path');
-var assert = require('assert');
+var assert = require('chai').assert;
 var AssetsManifest = require('../src/AssetsManifest');
 
 describe('AssetsManifest', function() {
-  var exampleManifest = path.join(__dirname, 'example-manifest.json');
+  var exampleManifest = path.join(__dirname, 'fixtures', 'example-manifest.json');
 
   describe('#constructor()', function () {
     it('should accept a file path as the first argument', function () {
@@ -17,46 +17,38 @@ describe('AssetsManifest', function() {
       });
       assert.equal(exampleManifest, manifest.manifestPath);
     });
-
-    describe('#assetsPath', function () {
-      it('should have assetsPath', function () {
-        var manifest = new AssetsManifest({
-          manifestPath: exampleManifest,
-          assetsPath: './'
-        });
-        assert.equal(path.resolve('./'), manifest.assetsPath);
-      });
-
-      it('should have default assetsPath', function () {
-        var manifest = new AssetsManifest({ manifestPath: exampleManifest });
-        assert.equal(path.dirname(exampleManifest), manifest.assetsPath);
-      });
-    });
   });
 
   describe('#load()', function () {
     it('should return true when able to load', function () {
       var manifest = new AssetsManifest( exampleManifest );
-      assert.equal(true, manifest.load());
+      assert.isTrue(manifest.load());
+    });
+
+    it('should return false if manifestPath is missing', function () {
+      var manifest = new AssetsManifest();
+      delete manifest.manifestPath;
+      assert.isFalse(manifest.load());
     });
 
     it('should return false when unable to load', function () {
       var manifest = new AssetsManifest();
-      assert.equal(false, manifest.load());
+      assert.isFalse(manifest.load());
     });
   });
 
   describe('#has()', function () {
     it('should return boolean', function () {
       var manifest = new AssetsManifest( exampleManifest );
-      assert.equal(true, manifest.has('main.js'));
-      assert.equal(false, manifest.has('photo.jpg'));
+      assert.isTrue(manifest.has('main.js'));
+      assert.isFalse(manifest.has('photo.jpg'));
     });
   });
 
   describe('#get()', function () {
     var manifest = new AssetsManifest( exampleManifest );
     var rawManifest = require( exampleManifest );
+    var prefix = '/assets/';
 
     it('should return an empty string when key is not found', function () {
       assert.equal('', manifest.get('fake key') );
@@ -70,6 +62,10 @@ describe('AssetsManifest', function() {
     Object.getOwnPropertyNames(rawManifest).forEach(function( key ) {
       it('should return ' + rawManifest[ key ] + ' when getting ' + key, function () {
         assert.equal( rawManifest[ key ], manifest.get( key ) );
+      });
+
+      it('should return ' + prefix + rawManifest[ key ] + ' with prefix when getting ' + key, function () {
+        assert.equal( prefix + rawManifest[ key ], manifest.get( key, '', prefix ) );
       });
     });
   });

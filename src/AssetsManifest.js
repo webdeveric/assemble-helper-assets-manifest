@@ -1,7 +1,7 @@
 'use strict';
 
-var fs    = require('fs');
 var path  = require('path');
+var assign = require('object-assign');
 
 function AssetsManifest( options )
 {
@@ -13,49 +13,56 @@ function AssetsManifest( options )
     };
   }
 
-  this._data   = {};
-  this._loaded = false;
+  this.assets = Object.create(null);
+  this.loaded = false;
+  this.prefix = options.prefix || '';
 
   this.manifestPath = options.manifestPath ?
     path.resolve( options.manifestPath ) :
     path.join( process.cwd(), 'manifest.json' );
-
-  this.assetsPath = options.assetsPath ?
-    path.resolve( options.assetsPath ) :
-    path.dirname( this.manifestPath );
 
   this.load();
 }
 
 AssetsManifest.prototype.load = function()
 {
+  this.loaded = false;
+
   if ( this.manifestPath ) {
     try {
-      var data = JSON.parse( fs.readFileSync( this.manifestPath ) );
-      this._data = data;
-      this._loaded = true;
-    } catch ( e ) {
-      this._loaded = false;
+      this.assets = assign(Object.create(null), require( this.manifestPath ) );
+      this.loaded = true;
+    } catch (err) { // eslint-disable-line
     }
   }
 
-  return this._loaded;
+  return this.loaded;
 };
 
 AssetsManifest.prototype.has = function( key )
 {
-  return this._data && this._data.hasOwnProperty( key );
+  return this.assets && Object.prototype.hasOwnProperty.call( this.assets, key );
 };
 
-AssetsManifest.prototype.get = function( key, defaultValue, prependAssetsPath )
+AssetsManifest.prototype.get = function( key, defaultValue, prefix )
 {
-  var asset = this.has( key ) ? this._data[ key ] : (defaultValue || '');
+  defaultValue = defaultValue || '';
 
-  if ( typeof asset === 'string' && !!prependAssetsPath ) {
-    asset = path.join(this.assetsPath, asset);
+  if ( ! key ) {
+    return defaultValue;
   }
 
-  return asset;
+  if ( prefix === true ) {
+    prefix = this.prefix;
+  } else if ( prefix === false ) {
+    prefix = '';
+  } else if ( prefix === undefined ) {
+    prefix = this.prefix;
+  }
+
+  var asset = this.has( key ) ? this.assets[ key ] : defaultValue;
+
+  return typeof asset === 'string' && prefix ? prefix + asset : asset;
 };
 
 module.exports = AssetsManifest;
