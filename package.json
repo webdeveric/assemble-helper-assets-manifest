@@ -11,7 +11,7 @@
     "assetsManifest"
   ],
   "private": true,
-  "license": "none",
+  "license": "MIT",
   "author": {
     "email": "eric@webdeveric.com",
     "name": "Eric King",
@@ -34,15 +34,26 @@
   ],
   "main": "src/helper-assets-manifest.js",
   "scripts": {
-    "eslint": "eslint --fix src",
+    "lint": "eslint --fix src test",
     "doc": "jsdoc -c ./jsdoc.json",
-    "test": "mocha"
+    "test": "mocha --colors",
+    "test:report": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec",
+    "test:coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
+    "prepublish": "npm run test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "object-assign": "^4.0"
+  },
   "devDependencies": {
-    "eslint": "^2.7.0",
-    "handlebars": "^4.0.5",
-    "jsdoc": "^3.4.0",
-    "mocha": "^2.4.5"
+    "chai": "^3.0",
+    "eslint": "^3.0",
+    "eslint-config-webdeveric": "^0.1",
+    "handlebars": "^4.0",
+    "istanbul": "^0.4",
+    "jsdoc": "^3.0",
+    "mocha": "^3.0"
+  },
+  "peerDependencies": {
+    "handlebars": "*"
   }
 }
