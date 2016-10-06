@@ -1,5 +1,11 @@
 # Assemble Helper Assets Manifest
 
+[![Build Status](https://travis-ci.org/webdeveric/assemble-helper-assets-manifest.svg?branch=master)](https://travis-ci.org/webdeveric/assemble-helper-assets-manifest)
+[![codecov](https://codecov.io/gh/webdeveric/assemble-helper-assets-manifest/branch/master/graph/badge.svg)](https://codecov.io/gh/webdeveric/assemble-helper-assets-manifest)
+[![dependencies Status](https://david-dm.org/webdeveric/assemble-helper-assets-manifest/status.svg)](https://david-dm.org/webdeveric/assemble-helper-assets-manifest)
+[![devDependencies Status](https://david-dm.org/webdeveric/assemble-helper-assets-manifest/dev-status.svg)](https://david-dm.org/webdeveric/assemble-helper-assets-manifest?type=dev)
+[![peerDependencies Status](https://david-dm.org/webdeveric/assemble-helper-assets-manifest/peer-status.svg)](https://david-dm.org/webdeveric/assemble-helper-assets-manifest?type=peer)
+
 This package provides a [custom helper](http://assemble.io/docs/Custom-Helpers.html) for
 [Handlebars](http://handlebarsjs.com/) that [Assemble](http://assemble.io/) can use.
 
