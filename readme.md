@@ -12,7 +12,7 @@ This package provides a [custom helper](http://assemble.io/docs/Custom-Helpers.h
 ## Installation
 
 ```shell
-npm install webdeveric/assemble-helper-assets-manifest --save
+npm install assemble-helper-assets-manifest --save
 ```
 
 ## Setup with Assemble
