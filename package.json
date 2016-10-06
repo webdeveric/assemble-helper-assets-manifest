@@ -10,7 +10,6 @@
     "manifest",
     "assetsManifest"
   ],
-  "private": true,
   "license": "MIT",
   "author": {
     "email": "eric@webdeveric.com",
