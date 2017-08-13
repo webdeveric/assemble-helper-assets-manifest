@@ -44,9 +44,9 @@
     "object-assign": "^4.0"
   },
   "devDependencies": {
-    "chai": "^3.0",
-    "eslint": "^3.0",
-    "eslint-config-webdeveric": "^0.1",
+    "chai": "^4.0",
+    "eslint": "^4.0",
+    "eslint-config-webdeveric": "^0.2",
     "handlebars": "^4.0",
     "istanbul": "^0.4",
     "jsdoc": "^3.0",
