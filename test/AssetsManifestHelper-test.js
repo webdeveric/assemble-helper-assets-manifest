@@ -1,13 +1,14 @@
-var path = require('path');
-var assert = require('chai').assert;
-var Handlebars = require('handlebars');
-var AssetsManifestHelper = require('../src/helper-assets-manifest');
+'use strict';
+
+const path = require('path');
+const assert = require('chai').assert;
+const Handlebars = require('handlebars');
+const AssetsManifestHelper = require('../src/helper-assets-manifest');
 
 describe('AssetsManifestHelper', function() {
-
   before(function() {
     AssetsManifestHelper.register(Handlebars, {
-      manifestPath: path.join(__dirname, 'fixtures', 'example-manifest.json')
+      manifestPath: path.join(__dirname, 'fixtures', 'example-manifest.json'),
     });
   });
 
@@ -50,20 +51,20 @@ describe('AssetsManifestHelper', function() {
     it('sets the helper name', function() {
       AssetsManifestHelper.register(Handlebars, {
         manifestPath: path.join(__dirname, 'fixtures', 'example-manifest.js'),
-        name: 'foobar'
+        name: 'foobar',
       });
 
-      assert.isTrue(Handlebars.helpers.hasOwnProperty('foobar'));
+      assert.isTrue(Object.hasOwnProperty.call(Handlebars.helpers, 'foobar'));
     });
   });
 
   describe('options.prefix', function() {
     it('sets the default prefix', function() {
-      var prefix = '/assets/';
+      const prefix = '/assets/';
 
       AssetsManifestHelper.register(Handlebars, {
         manifestPath: path.join(__dirname, 'fixtures', 'example-manifest.json'),
-        prefix: prefix
+        prefix: prefix,
       });
 
       assert.equal( prefix + 'main-abc123.js', (Handlebars.compile('{{assetsManifest "main.js"}}'))());
@@ -72,5 +73,4 @@ describe('AssetsManifestHelper', function() {
       assert.equal( 'main-abc123.js', (Handlebars.compile('{{assetsManifest "main.js" prefix=false}}'))());
     });
   });
-
 });

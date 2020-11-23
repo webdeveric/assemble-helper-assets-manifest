@@ -4,6 +4,8 @@
  * @author Eric King <eric@webdeveric.com>
  */
 
+'use strict';
+
 /**
  * assetsManifest helper
  *
@@ -18,20 +20,18 @@
  */
 module.exports.register = function( Handlebars, options )
 {
-  'use strict';
-
   options = options || {};
 
   if ( ! options.manifestPath ) {
     throw new Error('manifestPath is not defined in options');
   }
 
-  var AssetsManifest = require('./AssetsManifest');
-  var manifest = new AssetsManifest( options );
+  const AssetsManifest = require('./AssetsManifest');
+  const manifest = new AssetsManifest( options );
 
   Handlebars.registerHelper( options.name || 'assetsManifest', function() {
-    var key     = arguments.length > 1 ? arguments[ 0 ] : '';
-    var options = arguments.length > 1 ? arguments[ 1 ] : arguments[ 0 ];
+    const key     = arguments.length > 1 ? arguments[ 0 ] : '';
+    const options = arguments.length > 1 ? arguments[ 1 ] : arguments[ 0 ];
 
     return manifest.get( key, options.hash.default || key, options.hash.prefix );
   });

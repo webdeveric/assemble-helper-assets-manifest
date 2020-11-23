@@ -1,7 +1,6 @@
 'use strict';
 
-var path  = require('path');
-var assign = require('object-assign');
+const path  = require('path');
 
 function AssetsManifest( options )
 {
@@ -9,7 +8,7 @@ function AssetsManifest( options )
 
   if ( typeof options === 'string' ) {
     options = {
-      manifestPath: options
+      manifestPath: options,
     };
   }
 
@@ -30,7 +29,7 @@ AssetsManifest.prototype.load = function()
 
   if ( this.manifestPath ) {
     try {
-      this.assets = assign(Object.create(null), require( this.manifestPath ) );
+      this.assets = Object.assign( Object.create(null), require( this.manifestPath ) );
       this.loaded = true;
     } catch (err) { // eslint-disable-line
     }
@@ -60,7 +59,7 @@ AssetsManifest.prototype.get = function( key, defaultValue, prefix )
     prefix = this.prefix;
   }
 
-  var asset = this.has( key ) ? this.assets[ key ] : defaultValue;
+  const asset = this.has( key ) ? this.assets[ key ] : defaultValue;
 
   return typeof asset === 'string' && prefix ? prefix + asset : asset;
 };
