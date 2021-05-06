@@ -40,9 +40,8 @@
     "test:coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
     "prepublishOnly": "npm run test"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@webdeveric/eslint-config": "^0.1.0",
+    "@webdeveric/eslint-config": "^0.1.2",
     "chai": "^4.0",
     "eslint": "^7.14.0",
     "handlebars": "^4.0",
